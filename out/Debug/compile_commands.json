@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/home/user/Desktop/Skola2/GitHub/CPP/MatrixC/out/Debug",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/matrix.dir/main.cpp.o -c /home/user/Desktop/Skola2/GitHub/CPP/MatrixC/main.cpp",
+  "file": "/home/user/Desktop/Skola2/GitHub/CPP/MatrixC/main.cpp",
+  "output": "CMakeFiles/matrix.dir/main.cpp.o"
+},
+{
+  "directory": "/home/user/Desktop/Skola2/GitHub/CPP/MatrixC/out/Debug",
+  "command": "/usr/bin/c++   -g -std=gnu++17 -o CMakeFiles/matrix.dir/src/matrixDB.cpp.o -c /home/user/Desktop/Skola2/GitHub/CPP/MatrixC/src/matrixDB.cpp",
+  "file": "/home/user/Desktop/Skola2/GitHub/CPP/MatrixC/src/matrixDB.cpp",
+  "output": "CMakeFiles/matrix.dir/src/matrixDB.cpp.o"
+}
+]
