@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../h/matrixDB.h"
+#include "../h/matrixDB.h" 
 
 
-void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, int poradie){
+void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, char poradie){
 
     struct t_matica* nova = (struct t_matica*)malloc(sizeof(struct t_matica));
 
@@ -26,7 +26,6 @@ void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, int po
 
     nova-> dalsia = *uk_prva;
     *uk_prva = nova;
-
 
 }
 
