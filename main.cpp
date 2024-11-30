@@ -18,12 +18,12 @@ void ADD(){
     for(int i = 0; i < riadky; i++){
         matica[i] = (int*)malloc(stlpce * sizeof(int));
     }
-    
+
 
     for(int i = 0; i < riadky; i++){
         for(int j = 0; j < stlpce; j++){
             matica[i][j] = 0;
-     }
+        }
     }
 
     for(int i = 0; i < riadky; i++){
@@ -93,25 +93,25 @@ void SUM(){
     } 
 
     do{
-    
-    printf("Zadaj poradie matice v:");
-    scanf(" %d", &v);
 
-    odkazV = prva;
+        printf("Zadaj poradie matice v:");
+        scanf(" %d", &v);
 
-    while(odkazV != NULL){
-        if(odkazV->poradie == v){
-            break;
+        odkazV = prva;
+
+        while(odkazV != NULL){
+            if(odkazV->poradie == v){
+                break;
+            }
+            odkazV = odkazV->dalsia;
         }
-        odkazV = odkazV->dalsia;
-    }
 
-    if((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce)){
-            
-        riadky = odkazV->riadky;
-        stlpce = odkazV->stlpce;
+        if((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce)){
 
-    }
+            riadky = odkazV->riadky;
+            stlpce = odkazV->stlpce;
+
+        }
 
     }while((odkazU->riadky != odkazV->riadky) && (odkazU->stlpce != odkazV->stlpce));
 
@@ -133,7 +133,7 @@ void SUM(){
         printf("\n");
     }
 
-    
+
     int** matica = (int**)malloc(riadky * sizeof(int*));
     for(int i = 0; i < riadky; i++){
         matica[i] = (int*)malloc(stlpce * sizeof(int));
@@ -145,16 +145,16 @@ void SUM(){
 
     for(int i = 0; i < riadky; i++){
         for(int j = 0; j < stlpce; j++){
-           matica[i][j] = odkazV->matica[i][j] + odkazU->matica[i][j];
-           printf("%d", matica[i][j]);
+            matica[i][j] = odkazV->matica[i][j] + odkazU->matica[i][j];
+            printf("%d", matica[i][j]);
         }
         printf("\n");
     }
 
     save(matica, riadky, stlpce, &prva, poradie);
 
-    }
-    
+}
+
 void SUB(){
 
     int u;
@@ -200,25 +200,25 @@ void SUB(){
     } 
 
     do{
-    
-    printf("Zadaj poradie matice v:");
-    scanf(" %d", &v);
 
-    odkazV = prva;
+        printf("Zadaj poradie matice v:");
+        scanf(" %d", &v);
 
-    while(odkazV != NULL){
-        if(odkazV->poradie == v){
-            break;
+        odkazV = prva;
+
+        while(odkazV != NULL){
+            if(odkazV->poradie == v){
+                break;
+            }
+            odkazV = odkazV->dalsia;
         }
-        odkazV = odkazV->dalsia;
-    }
 
-    if((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce)){
-            
-        riadky = odkazV->riadky;
-        stlpce = odkazV->stlpce;
+        if((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce)){
 
-    }
+            riadky = odkazV->riadky;
+            stlpce = odkazV->stlpce;
+
+        }
 
     }while((odkazU->riadky != odkazV->riadky) && (odkazU->stlpce != odkazV->stlpce));
 
@@ -240,7 +240,7 @@ void SUB(){
         printf("\n");
     }
 
-    
+
     int** matica = (int**)malloc(riadky * sizeof(int*));
     for(int i = 0; i < riadky; i++){
         matica[i] = (int*)malloc(stlpce * sizeof(int));
@@ -252,15 +252,15 @@ void SUB(){
 
     for(int i = 0; i < riadky; i++){
         for(int j = 0; j < stlpce; j++){
-           matica[i][j] = odkazU->matica[i][j] - odkazV->matica[i][j];
-           printf("%d", matica[i][j]);
+            matica[i][j] = odkazU->matica[i][j] - odkazV->matica[i][j];
+            printf("%d", matica[i][j]);
         }
         printf("\n");
     }
 
     save(matica, riadky, stlpce, &prva, poradie);
 
-    }
+}
 
 
 void MULT_I(){
@@ -311,8 +311,8 @@ void MULT_I(){
 
     for(int i = 0; i < riadky; i++){
         for(int j = 0; j < stlpce; j++){
-           matica[i][j] = odkazU->matica[i][j] * v;
-           printf("%d", matica[i][j]);
+            matica[i][j] = odkazU->matica[i][j] * v;
+            printf("%d", matica[i][j]);
         }
         printf("\n");
     }
@@ -366,22 +366,22 @@ void MULT_M(){
     } 
 
     do{
-    
-    printf("Zadaj poradie matice v:");
-    scanf(" %d", &v);
 
-    odkazV = prva;
+        printf("Zadaj poradie matice v:");
+        scanf(" %d", &v);
 
-    while(odkazV != NULL){
-        if(odkazV->poradie == v){
-            break;
+        odkazV = prva;
+
+        while(odkazV != NULL){
+            if(odkazV->poradie == v){
+                break;
+            }
+            odkazV = odkazV->dalsia;
         }
-        odkazV = odkazV->dalsia;
-    }
 
-            
-    riadky = odkazU->riadky;
-    stlpce = odkazV->stlpce;
+
+        riadky = odkazU->riadky;
+        stlpce = odkazV->stlpce;
 
 
     }while((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce));
@@ -404,7 +404,7 @@ void MULT_M(){
         printf("\n");
     }
 
-    
+
     int** matica = (int**)malloc(riadky * sizeof(int*));
     for(int i = 0; i < riadky; i++){
         matica[i] = (int*)malloc(stlpce * sizeof(int));
@@ -428,8 +428,8 @@ void MULT_M(){
 
 };
 void INV(){
-    
-    int det;
+
+    double det;
     int u;
     int riadky;
     int stlpce;
@@ -466,65 +466,104 @@ void INV(){
         matica[i] = (int*)malloc(stlpce * sizeof(int));
     }
 
-    int inv[riadky][stlpce];
+    double mat[riadky][stlpce];
+
+    for(int i = 0; i < riadky; i++){
+        for(int j = 0; j < stlpce; j++){
+            mat[i][j] = odkazU->matica[i][j];
+        }
+    }
+
+
+    double inv[riadky][stlpce];
 
     if(odkazU->riadky == 3 && odkazU->stlpce == 3){
     }else{
         if(odkazU->riadky == 4 && odkazU->stlpce == 4){
-        
-        inv[0][0] = odkazU->matica[1][1] * odkazU->matica[2][2] * odkazU->matica[3][3] -
-                odkazU->matica[1][1] * odkazU->matica[2][3] * odkazU->matica[3][2] -
-                odkazU->matica[2][1] * odkazU->matica[1][2] * odkazU->matica[3][3] +
-                odkazU->matica[2][1] * odkazU->matica[1][3] * odkazU->matica[3][2] +
-                odkazU->matica[3][1] * odkazU->matica[1][2] * odkazU->matica[2][3] -
-                odkazU->matica[3][1] * odkazU->matica[1][3] * odkazU->matica[2][2];
 
-        inv[0][1] = -odkazU->matica[0][1] * odkazU->matica[2][2] * odkazU->matica[3][3] +
-                 odkazU->matica[0][1] * odkazU->matica[2][3] * odkazU->matica[3][2] +
-                 odkazU->matica[2][1] * odkazU->matica[0][2] * odkazU->matica[3][3] -
-                 odkazU->matica[2][1] * odkazU->matica[0][3] * odkazU->matica[3][2] -
-                 odkazU->matica[3][1] * odkazU->matica[0][2] * odkazU->matica[2][3] +
-                 odkazU->matica[3][1] * odkazU->matica[0][3] * odkazU->matica[2][2];
+            inv[0][0] = mat[1][1] * mat[2][2] * mat[3][3] -
+                mat[1][1] * mat[2][3] * mat[3][2] -
+                mat[2][1] * mat[1][2] * mat[3][3] +
+                mat[2][1] * mat[1][3] * mat[3][2] +
+                mat[3][1] * mat[1][2] * mat[2][3] -
+                mat[3][1] * mat[1][3] * mat[2][2];
 
-        inv[0][2] = odkazU->matica[0][1] * odkazU->matica[1][2] * odkazU->matica[3][3] -
-                odkazU->matica[0][1] * odkazU->matica[1][3] * odkazU->matica[3][2] -
-                odkazU->matica[1][1] * odkazU->matica[0][2] * odkazU->matica[3][3] +
-                odkazU->matica[1][1] * odkazU->matica[0][3] * odkazU->matica[3][2] +
-                odkazU->matica[3][1] * odkazU->matica[0][2] * odkazU->matica[1][3] -
-                odkazU->matica[3][1] * odkazU->matica[0][3] * odkazU->matica[1][2];
+            inv[0][1] = -mat[0][1] * mat[2][2] * mat[3][3] +
+                mat[0][1] * mat[2][3] * mat[3][2] +
+                mat[2][1] * mat[0][2] * mat[3][3] -
+                mat[2][1] * mat[0][3] * mat[3][2] -
+                mat[3][1] * mat[0][2] * mat[2][3] +
+                mat[3][1] * mat[0][3] * mat[2][2];
 
-        inv[0][3] = -odkazU->matica[0][1] * odkazU->matica[1][2] * odkazU->matica[2][3] +
-                 odkazU->matica[0][1] * odkazU->matica[1][3] * odkazU->matica[2][2] +
-                 odkazU->matica[1][1] * odkazU->matica[0][2] * odkazU->matica[2][3] -
-                 odkazU->matica[1][1] * odkazU->matica[0][3] * odkazU->matica[2][2] -
-                 odkazU->matica[2][1] * odkazU->matica[0][2] * odkazU->matica[1][3] +
-                 odkazU->matica[2][1] * odkazU->matica[0][3] * odkazU->matica[1][2];
+            inv[0][2] = mat[0][1] * mat[1][2] * mat[3][3] -
+                mat[0][1] * mat[1][3] * mat[3][2] -
+                mat[1][1] * mat[0][2] * mat[3][3] +
+                mat[1][1] * mat[0][3] * mat[3][2] +
+                mat[3][1] * mat[0][2] * mat[1][3] -
+                mat[3][1] * mat[0][3] * mat[1][2];
 
-        det = odkazU->matica[0][0] * inv[0][0] +
-          odkazU->matica[0][1] * inv[0][1] +
-          odkazU->matica[0][2] * inv[0][2] +
-          odkazU->matica[0][3] * inv[0][3];
+            inv[0][3] = -mat[0][1] * mat[1][2] * mat[2][3] +
+                mat[0][1] * mat[1][3] * mat[2][2] +
+                mat[1][1] * mat[0][2] * mat[2][3] -
+                mat[1][1] * mat[0][3] * mat[2][2] -
+                mat[2][1] * mat[0][2] * mat[1][3] +
+                mat[2][1] * mat[0][3] * mat[1][2];
 
-             if(det == 0){
-             printf("Nemozno inverznu maticu vytvorit\n");
-         }
+            det = mat[0][0] * inv[0][0] +
+                mat[0][1] * inv[0][1] +
+                mat[0][2] * inv[0][2] +
+                mat[0][3] * inv[0][3];
 
-        det = 1000 / det;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                matica[i][j] = inv[i][j] * det;
-                printf("%d ", matica[i][j]);
+            if(det == 0){
+                printf("Nemozno inverznu maticu vytvorit\n");
             }
-            printf("\n");
-         }
 
-        save(matica, riadky, stlpce, &prva, 500 + cislo);
 
-        }else{
-            if(odkazU->riadky == 5 && odkazU->stlpce == 5){
+            for (int i = 0; i < riadky; i++) {
+                for (int j = 0; j < stlpce; j++) {
+                    double minor[3][3];
+                    int minor_row = 0, minor_col;
+                    for (int r = 0; r < 4; r++) {
+                        if (r == i) continue;
+                        minor_col = 0;
+                        for (int c = 0; c < 4; c++) {
+                            if (c == j) continue;
+                            minor[minor_row][minor_col] = mat[r][c];
+                            minor_col++;
+                        }
+                        minor_row++;
+                    }
+
+                       double minor_det =
+                        minor[0][0] * (minor[1][1] * minor[2][2] - minor[1][2] * minor[2][1]) -
+                        minor[0][1] * (minor[1][0] * minor[2][2] - minor[1][2] * minor[2][0]) +
+                        minor[0][2] * (minor[1][0] * minor[2][1] - minor[1][1] * minor[2][0]);
+
+                    inv[j][i] = ((i + j) % 2 == 0 ? 1 : -1) * minor_det;
+                }
+            }
+
+            for (int i = 0; i < riadky; i++) {
+                for (int j = 0; j < stlpce; j++) {
+                    inv[i][j] /= det;
+                }
+            }
+
+            static int poradie = 500 + cislo;
+            
+            printf("Nova matica #%d:\n", poradie);
+
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 4; j++) {
+                    matica[i][j] = (int)(inv[i][j]);
+                    printf("%d", matica[i][j]);
+                }
+                printf("\n");
+            }
+            
+            save(matica, riadky, stlpce, &prva, poradie);
 
         }
-    }
     }
 };
 void DET(){
@@ -535,7 +574,7 @@ void DET(){
 void ANS() {
     char vyber;
     struct t_matica* odkaz = prva;
-    
+
     while (odkaz != NULL) {
         printf("Matrix #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
         odkaz = odkaz->dalsia;
@@ -583,8 +622,8 @@ int main(){
     do{
         printf("\n");
         printf(
-            "ADD(A) DEL(D) ANS(S) EXIT(E)"
-        );
+                "ADD(A) DEL(D) ANS(S) EXIT(E)"
+              );
         scanf(" %c", &vyber);
 
         switch(vyber){
@@ -603,7 +642,7 @@ int main(){
                 break;
         }
     }while(vyber != 'E');
-    
+
     return 0;
 
 }
