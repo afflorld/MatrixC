@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/matrix.dir/main.cpp.o CMakeFiles/matrix.dir/src/matrixDB.cpp.o -o matrix
