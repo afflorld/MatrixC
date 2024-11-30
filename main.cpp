@@ -12,6 +12,7 @@ void ADD(){
     scanf("%d", &stlpce);
     printf("\nRiadky:");
     scanf("%d", &riadky);
+    static int poradie = 0;
 
     int** matica = (int**)malloc(riadky * sizeof(int*));
     for(int i = 0; i < riadky; i++){
@@ -41,7 +42,6 @@ void ADD(){
         }
     }    
 
-    static int poradie = 0;
     poradie++;
 
     save(matica, riadky, stlpce, &prva, poradie);
@@ -59,29 +59,48 @@ void SUM(){
     struct t_matica* odkazV = prva;
     static int cislo = 0;
 
-    while (odkaz != NULL) {
-        if((odkaz->riadky + odkaz->stlpce) % 2 == 0){ 
-            printf("Matrix #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
-            odkaz = odkaz->dalsia;
-            }
-        }
-
-    do{
-    
-    printf("Zadaj poradie matice u:");
+    printf("Vyber maticu u ktorej chces scitat maticu:");
     scanf(" %d", &u);
-    printf("Zadaj poradie matice v:");
-    scanf(" %d", &v);
 
-    while(odkazU->dalsia){
-        if(odkazU->dalsia->poradie == u){
+    odkazU = prva;
+
+    while(odkazU != NULL){
+        if(odkazU->poradie == u){
             break;
         }
         odkazU = odkazU->dalsia;
     }
 
-    while(odkazV->dalsia){
-        if(odkazV->dalsia->poradie ==v){
+    printf("Vybral si u:\n");
+
+    for(int i = 0; i < odkazU->riadky; i++){
+        for(int j = 0; j < odkazU->stlpce; j++){
+            printf("%d", odkazU->matica[i][j] );
+        }
+        printf("\n");
+    }
+
+    printf("Matice ktore mozes pricitat:\n");
+
+    odkaz = prva;
+
+    while (odkaz != NULL) {
+        if((odkazU->riadky == odkaz->riadky) && (odkazU->stlpce == odkaz->stlpce)){ 
+            printf("Matrix #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        }
+
+        odkaz = odkaz->dalsia;
+    } 
+
+    do{
+    
+    printf("Zadaj poradie matice v:");
+    scanf(" %d", &v);
+
+    odkazV = prva;
+
+    while(odkazV != NULL){
+        if(odkazV->poradie == v){
             break;
         }
         odkazV = odkazV->dalsia;
@@ -121,7 +140,7 @@ void SUM(){
     }
 
     cislo++;
-    int poradie = 100 + cislo;
+    static int poradie = 100 + cislo;
     printf("Nova matica #%d\n", poradie);
 
     for(int i = 0; i < riadky; i++){
@@ -138,13 +157,119 @@ void SUM(){
     
 void SUB(){
 
+    int u;
+    int v;
+    int riadky;
+    int stlpce;
+    struct t_matica* odkaz = prva;
+    struct t_matica* odkazU = prva;
+    struct t_matica* odkazV = prva;
+    static int cislo = 0;
+
+    printf("Vyber maticu od ktorej chces odcitat:");
+    scanf(" %d", &u);
+
+    odkazU = prva;
+
+    while(odkazU != NULL){
+        if(odkazU->poradie == u){
+            break;
+        }
+        odkazU = odkazU->dalsia;
+    }
+
+    printf("Vybral si u:\n");
+
+    for(int i = 0; i < odkazU->riadky; i++){
+        for(int j = 0; j < odkazU->stlpce; j++){
+            printf("%d", odkazU->matica[i][j] );
+        }
+        printf("\n");
+    }
+
+    printf("Matice ktore mozes odcitat:\n");
+
+    odkaz = prva;
+
+    while (odkaz != NULL) {
+        if((odkazU->riadky == odkaz->riadky) && (odkazU->stlpce == odkaz->stlpce)){ 
+            printf("Matrix #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        }
+
+        odkaz = odkaz->dalsia;
+    } 
+
+    do{
+    
+    printf("Zadaj poradie matice v:");
+    scanf(" %d", &v);
+
+    odkazV = prva;
+
+    while(odkazV != NULL){
+        if(odkazV->poradie == v){
+            break;
+        }
+        odkazV = odkazV->dalsia;
+    }
+
+    if((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce)){
+            
+        riadky = odkazV->riadky;
+        stlpce = odkazV->stlpce;
+
+    }
+
+    }while((odkazU->riadky != odkazV->riadky) && (odkazU->stlpce != odkazV->stlpce));
+
+    printf("u:\n");
+
+    for(int i = 0; i < odkazU->riadky; i++){
+        for(int j = 0; j < odkazU->stlpce; j++){
+            printf("%d", odkazU->matica[i][j] );
+        }
+        printf("\n");
+    }
+
+    printf("v:\n");
+
+    for(int i = 0; i < odkazV->riadky; i++){
+        for(int j = 0; j < odkazV->stlpce; j++){
+            printf("%d", odkazV->matica[i][j] );
+        }
+        printf("\n");
+    }
+
+    
+    int** matica = (int**)malloc(riadky * sizeof(int*));
+    for(int i = 0; i < riadky; i++){
+        matica[i] = (int*)malloc(stlpce * sizeof(int));
+    }
+
+    cislo++;
+    static int poradie = 100 + cislo;
+    printf("Nova matica #%d\n", poradie);
+
+    for(int i = 0; i < riadky; i++){
+        for(int j = 0; j < stlpce; j++){
+           matica[i][j] = odkazV->matica[i][j] - odkazU->matica[i][j];
+           printf("%d", matica[i][j]);
+        }
+        printf("\n");
+    }
+
+    save(matica, riadky, stlpce, &prva, poradie);
+
+    }
+
+
+void MULT_I(){
+
+
 
 };
-void DEL(){
 
-
-};
-void MUL(){
+void MULT_M(){
 
 
 
@@ -174,7 +299,7 @@ void ANS() {
 
 
     do{
-        printf("+(+) -(-) /(/) *(*) INV(I) DET(D) GAUS(G) EXIT(E)");
+        printf("+(+) -(-) MULT_I(A) MULT_M(B) INV(I) DET(D) GAUS(G) EXIT(E)");
         scanf(" %c", &vyber);
 
         switch(vyber){
@@ -184,11 +309,11 @@ void ANS() {
             case '-':
                 SUB();
                 break;
-            case '/':
-                DEL();
+            case 'A':
+                MULT_I();
                 break;
-            case '*':
-                MUL();
+            case 'B':
+                MULT_M();
                 break;
             case 'I':
                 INV();

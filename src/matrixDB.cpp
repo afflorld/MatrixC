@@ -3,7 +3,7 @@
 #include "../h/matrixDB.h" 
 
 
-void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, char poradie){
+void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, int poradie){
 
     struct t_matica* nova = (struct t_matica*)malloc(sizeof(struct t_matica));
 
@@ -12,6 +12,7 @@ void save(int** matica,int riadky, int stlpce, struct t_matica** uk_prva, char p
     nova->stlpce = stlpce;
     nova->poradie = poradie;
 
+    
 
     nova->matica = (int**)malloc(riadky * sizeof(int*));
     for(int i = 0; i < riadky; i++){
