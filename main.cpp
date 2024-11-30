@@ -478,6 +478,44 @@ void INV(){
     double inv[riadky][stlpce];
 
     if(odkazU->riadky == 3 && odkazU->stlpce == 3){
+
+        inv[0][0] = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];
+        inv[0][1] = mat[0][2] * mat[2][1] - mat[0][1] * mat[2][2];
+        inv[0][2] = mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1];
+
+        inv[1][0] = mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2];
+        inv[1][1] = mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0];
+        inv[1][2] = mat[0][2] * mat[1][0] - mat[0][0] * mat[1][2];
+
+        inv[2][0] = mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0];
+        inv[2][1] = mat[0][1] * mat[2][0] - mat[0][0] * mat[2][1];
+        inv[2][2] = mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0];
+
+        det = mat[0][0] * inv[0][0] + mat[0][1] * inv[1][0] + mat[0][2] * inv[2][0];
+
+        if(det == 0){
+            printf("Nemozno inverznu maticu vytvorit\n");
+        }
+
+        for(int i = 0; i < riadky; i++){
+            for(int j = 0; j < stlpce; j++){
+                inv[i][j] /= det;
+                inv[i][j] *= 100;
+            }
+        }
+
+        static int poradie = 500 + cislo;
+
+        printf("Nova matica #%d:\n", poradie);
+
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                matica[i][j] = int(inv[i][j]);
+                printf("%d", matica[i][j]);
+            }
+
+            printf("\n");
+        }
     }else{
         if(odkazU->riadky == 4 && odkazU->stlpce == 4){
 
@@ -534,7 +572,7 @@ void INV(){
                         minor_row++;
                     }
 
-                       double minor_det =
+                    double minor_det =
                         minor[0][0] * (minor[1][1] * minor[2][2] - minor[1][2] * minor[2][1]) -
                         minor[0][1] * (minor[1][0] * minor[2][2] - minor[1][2] * minor[2][0]) +
                         minor[0][2] * (minor[1][0] * minor[2][1] - minor[1][1] * minor[2][0]);
@@ -546,11 +584,12 @@ void INV(){
             for (int i = 0; i < riadky; i++) {
                 for (int j = 0; j < stlpce; j++) {
                     inv[i][j] /= det;
+                    inv[i][j] *= 100;
                 }
             }
 
             static int poradie = 500 + cislo;
-            
+
             printf("Nova matica #%d:\n", poradie);
 
             for (int i = 0; i < 4; i++) {
@@ -560,7 +599,81 @@ void INV(){
                 }
                 printf("\n");
             }
+
+            save(matica, riadky, stlpce, &prva, poradie);
+
+        }
+        if(odkazU->riadky == 5 && odkazU->stlpce == 5){
             
+            double cofactors[5][5];
+            double minor[4][4];
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    int minor_row = 0;
+                    for (int r = 0; r < 5; r++) {
+                        if (r == i) continue;
+                        int minor_col = 0;
+                        for (int c = 0; c < 5; c++) {
+                            if (c == j) continue;
+                            minor[minor_row][minor_col] = mat[r][c];
+                            minor_col++;
+                        }
+                        minor_row++;
+                    }
+
+                    double minor_det = 
+                        minor[0][0] * (minor[1][1] * (minor[2][2] * minor[3][3] - minor[2][3] * minor[3][2])
+                                - minor[1][2] * (minor[2][1] * minor[3][3] - minor[2][3] * minor[3][1])
+                                + minor[1][3] * (minor[2][1] * minor[3][2] - minor[2][2] * minor[3][1]))
+                        - minor[0][1] * (minor[1][0] * (minor[2][2] * minor[3][3] - minor[2][3] * minor[3][2])
+                                - minor[1][2] * (minor[2][0] * minor[3][3] - minor[2][3] * minor[3][0])
+                                + minor[1][3] * (minor[2][0] * minor[3][2] - minor[2][2] * minor[3][0]))
+                        + minor[0][2] * (minor[1][0] * (minor[2][1] * minor[3][3] - minor[2][3] * minor[3][1])
+                                - minor[1][1] * (minor[2][0] * minor[3][3] - minor[2][3] * minor[3][0])
+                                + minor[1][3] * (minor[2][0] * minor[3][1] - minor[2][1] * minor[3][0]))
+                        - minor[0][3] * (minor[1][0] * (minor[2][1] * minor[3][2] - minor[2][2] * minor[3][1])
+                                - minor[1][1] * (minor[2][0] * minor[3][2] - minor[2][2] * minor[3][0])
+                                + minor[1][2] * (minor[2][0] * minor[3][1] - minor[2][1] * minor[3][0]));
+
+                    cofactors[i][j] = ((i + j) % 2 == 0 ? 1 : -1) * minor_det;
+                }
+            }
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    inv[i][j] = cofactors[j][i];
+                }
+            }
+
+            det = 0.0;
+            for (int i = 0; i < 5; i++) {
+                det += mat[0][i] * cofactors[0][i];
+            }
+
+            if (det == 0) {
+                printf("Nemozno inverznu maticu vytvorit\n");
+                return;
+            }
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    inv[i][j] /= det;
+                    inv[i][j] *= 100;
+                }
+            }
+
+            static int poradie = 500 + cislo;
+            printf("Nova matica #%d:\n", poradie);
+
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    matica[i][j] = (int)(inv[i][j]);
+                    printf("%d ", matica[i][j]);
+                }
+                printf("\n");
+            }
+
             save(matica, riadky, stlpce, &prva, poradie);
 
         }
