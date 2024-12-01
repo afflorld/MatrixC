@@ -58,9 +58,28 @@ void SUM(){
     struct t_matica* odkazU = prva;
     struct t_matica* odkazV = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
+
+    
+    while(odkaz != NULL){
+        printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        zakaz[odkaz->poradie] = odkaz->poradie;
+        zcislo++;
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
+    do{
+
+    
 
     printf("Vyber maticu u ktorej chces scitat maticu:");
     scanf(" %d", &u);
+    }while(zakaz[u] != u);
 
     odkazU = prva;
 
@@ -80,6 +99,12 @@ void SUM(){
         printf("\n");
     }
 
+    zcislo = 0;
+    for(int i = 0; i < 1000; i++){
+        zakaz[i] = 0;
+    }
+
+
     printf("Matice ktore mozes pricitat:\n");
 
     odkaz = prva;
@@ -87,15 +112,22 @@ void SUM(){
     while (odkaz != NULL) {
         if((odkazU->riadky == odkaz->riadky) && (odkazU->stlpce == odkaz->stlpce)){ 
             printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+            zakaz[odkaz->poradie] = odkaz->poradie;
+            zcislo++;
         }
 
         odkaz = odkaz->dalsia;
     } 
 
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
     do{
 
         printf("Zadaj poradie matice v:");
         scanf(" %d", &v);
+    }while(zakaz[v] != v);
 
         odkazV = prva;
 
@@ -113,7 +145,6 @@ void SUM(){
 
         }
 
-    }while((odkazU->riadky != odkazV->riadky) && (odkazU->stlpce != odkazV->stlpce));
 
     printf("u:\n");
 
@@ -153,7 +184,10 @@ void SUM(){
 
     save(matica, riadky, stlpce, &prva, poradie);
 
-}
+    }
+    }
+
+    }
 
 void SUB(){
 
@@ -165,10 +199,26 @@ void SUB(){
     struct t_matica* odkazU = prva;
     struct t_matica* odkazV = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
+
+    while(odkaz != NULL){
+        printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        zakaz[odkaz->poradie] = odkaz->poradie;
+        zcislo++;
+        odkaz = odkaz->dalsia;
+    }
+
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
+    do{
 
     printf("Vyber maticu od ktorej chces odcitat:");
     scanf(" %d", &u);
-
+    }while(zakaz[u] != u);
     odkazU = prva;
 
     while(odkazU != NULL){
@@ -187,6 +237,11 @@ void SUB(){
         printf("\n");
     }
 
+    zcislo =0;
+    for(int i = 0; i < 1000; i++){
+        zakaz[i] = 0;
+    }
+
     printf("Matice ktore mozes odcitat:\n");
 
     odkaz = prva;
@@ -194,15 +249,21 @@ void SUB(){
     while (odkaz != NULL) {
         if((odkazU->riadky == odkaz->riadky) && (odkazU->stlpce == odkaz->stlpce)){ 
             printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+            zakaz[odkaz->poradie] = odkaz->poradie;
+            zcislo++;
         }
 
         odkaz = odkaz->dalsia;
     } 
+    
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
 
     do{
-
         printf("Zadaj poradie matice v:");
         scanf(" %d", &v);
+    }while(zakaz[v] != v);
 
         odkazV = prva;
 
@@ -220,7 +281,6 @@ void SUB(){
 
         }
 
-    }while((odkazU->riadky != odkazV->riadky) && (odkazU->stlpce != odkazV->stlpce));
 
     printf("u:\n");
 
@@ -260,6 +320,8 @@ void SUB(){
 
     save(matica, riadky, stlpce, &prva, poradie);
 
+    }
+    }
 }
 
 void TRANS(){
@@ -270,9 +332,27 @@ void TRANS(){
     struct t_matica* odkaz = prva;
     struct t_matica* odkazU = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
+
+    while(odkaz != NULL){
+        printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        zakaz[odkaz->poradie] = odkaz->poradie;
+        zcislo++;
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
+    do{
 
     printf("Vyber maticu ktoru chces transponovat:");
     scanf(" %d", &u);
+    
+    }while(zakaz[u] != u);
+
 
     odkazU = prva;
 
@@ -314,7 +394,7 @@ void TRANS(){
 
     save(matica, riadky, stlpce, &prva, poradie);
 
-
+    }
 };
 
 
@@ -327,9 +407,24 @@ void MULT_I(){
     struct t_matica* odkaz = prva;
     struct t_matica* odkazU = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
 
+    while(odkaz != NULL){
+        printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        zakaz[odkaz->poradie] = odkaz->poradie;
+        zcislo++;
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
+    do{
     printf("Vyber ktoru chces vynasobit cislom:");
     scanf(" %d", &u);
+    }while(zakaz[u] != u);
 
     odkazU = prva;
 
@@ -367,12 +462,14 @@ void MULT_I(){
     for(int i = 0; i < riadky; i++){
         for(int j = 0; j < stlpce; j++){
             matica[i][j] = odkazU->matica[i][j] * v;
-            printf("%d", matica[i][j]);
+            printf("%d ", matica[i][j]);
         }
         printf("\n");
     }
 
     save(matica, riadky, stlpce, &prva, poradie);
+
+    }
 
 };
 
@@ -386,9 +483,25 @@ void MULT_M(){
     struct t_matica* odkazU = prva;
     struct t_matica* odkazV = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
+
+    while(odkaz != NULL){
+        printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        zakaz[odkaz->poradie] = odkaz->poradie;
+        zcislo++;
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+    }else{
+
+    do{
 
     printf("Vyber maticu ktoru chces roznasobit:");
     scanf(" %d", &u);
+    }while(zakaz[u] != u);
 
     odkazU = prva;
 
@@ -408,22 +521,37 @@ void MULT_M(){
         printf("\n");
     }
 
-    printf("Maticu ktorou roznasobis: :\n");
+    zcislo = 0;
+    for(int i = 0; i < 1000; i++){
+        zakaz[i] = 0;
+    }
+
+    printf("Maticu ktorou roznasobis: \n");
 
     odkaz = prva;
 
     while (odkaz != NULL) {
         if((odkazU->stlpce == odkaz->riadky) || (!(odkazU->stlpce == odkaz->stlpce) && !(odkazU->riadky == odkaz->riadky))){ 
             printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+            zakaz[odkaz->poradie] = odkaz->poradie;
+            zcislo++;
         }
 
         odkaz = odkaz->dalsia;
     } 
 
-    do{
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+        return;
+    }else{
 
         printf("Zadaj poradie matice v:");
         scanf(" %d", &v);
+
+        if(zakaz[v] != v){
+            printf("Zle cislo\n");
+            return;
+        }else{
 
         odkazV = prva;
 
@@ -439,7 +567,9 @@ void MULT_M(){
         stlpce = odkazV->stlpce;
 
 
-    }while((odkazU->riadky == odkazV->riadky) && (odkazU->stlpce == odkazV->stlpce));
+        printf("riadky: %d\n", riadky);
+        printf("stlpce: %d\n", stlpce);
+
 
     printf("u:\n");
 
@@ -473,13 +603,18 @@ void MULT_M(){
         for(int j = 0; j < stlpce; j++){
             for(int k = 0; k < odkazU->stlpce; k++){
                 matica[i][j] += odkazU->matica[i][k] * odkazV->matica[k][j];
-                printf("%d ", matica[i][j]);
             }
+            printf("%d ", matica[i][j]);
         }
         printf("\n");
     }
 
     save(matica, riadky, stlpce, &prva, poradie);
+
+    }
+    }
+    
+}
 
 };
 void INV(){
@@ -491,9 +626,30 @@ void INV(){
     struct t_matica* odkaz = prva;
     struct t_matica* odkazU = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000]; 
 
+    printf("Len pre matice 2x2, 3x3, 4x4, 5x5\n");
+
+    while(odkaz != NULL){
+        if((odkaz->riadky == 2 && odkaz->stlpce == 2) || (odkaz->riadky == 3 && odkaz->stlpce == 3) || (odkaz->riadky == 4 && odkaz->stlpce == 4) || (odkaz->riadky == 5 && odkaz->stlpce == 5)){
+            printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+            zakaz[odkaz->poradie] = odkaz->poradie;
+            zcislo++;
+        }
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+        return;
+    }else{
+
+    do{
     printf("Vyber maticu ktoru chces inverznut:");
     scanf(" %d", &u);
+
+    }while(zakaz[u] != u);
 
     odkazU = prva;
 
@@ -532,6 +688,43 @@ void INV(){
 
     double inv[riadky][stlpce];
 
+    if(odkazU->riadky == 2 && odkazU->stlpce == 2){
+
+        inv[0][0] = mat[1][1];
+        inv[0][1] = -mat[0][1];
+        inv[1][0] = -mat[1][0];
+        inv[1][1] = mat[0][0];
+
+        det = mat[0][0] * inv[0][0] + mat[0][1] * inv[1][0];
+
+        if(det == 0){
+            printf("Nemozno inverznu maticu vytvorit\n");
+        }else{
+
+            for(int i = 0; i < riadky; i++){
+                for(int j = 0; j < stlpce; j++){
+                    inv[i][j] /= det;
+                    inv[i][j] *= 100;
+                }
+            }
+
+            static int poradie = 600 + cislo;
+
+            printf("Nova matica #%d:\n", poradie);
+
+            for(int i = 0; i < 2; i++){
+                for(int j = 0; j < 2; j++){
+                    matica[i][j] = int(inv[i][j]);
+                    printf("%d ", matica[i][j]);
+                }
+
+                printf("\n");
+            }
+
+            save(matica, riadky, stlpce, &prva, poradie);
+
+    }
+    }
     if(odkazU->riadky == 3 && odkazU->stlpce == 3){
 
         inv[0][0] = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];
@@ -739,7 +932,7 @@ void INV(){
 
             }
         }
-    }
+    }}
 };
 void DET(){
 
@@ -750,9 +943,31 @@ void DET(){
     struct t_matica* odkaz = prva;
     struct t_matica* odkazU = prva;
     static int cislo = 0;
+    int zcislo = 0;
+    int zakaz[1000];
+
+    printf("Len pre matice 2x2, 3x3, 4x4, 5x5\n");
+
+    while(odkaz != NULL){
+        if((odkaz->riadky == 2 && odkaz->stlpce == 2) || (odkaz->riadky == 3 && odkaz->stlpce == 3) || (odkaz->riadky == 4 && odkaz->stlpce == 4) || (odkaz->riadky == 5 && odkaz->stlpce == 5)){
+            printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+            zakaz[odkaz->poradie] = odkaz->poradie;
+            zcislo++;
+        }
+        odkaz = odkaz->dalsia;
+    }
+
+    if(zcislo == 0){
+        printf("Nemame maticu na pouzitie\n");
+        return;
+    }else{
+
+    do{
 
     printf("Vyber maticu ktoru chces inverznut:");
     scanf(" %d", &u);
+
+    }while(zakaz[u] != u);
 
     odkazU = prva;
 
@@ -787,6 +1002,18 @@ void DET(){
 
     double inv[riadky][stlpce];
 
+    if(odkazU->riadky == 2 && odkazU->stlpce == 2){
+
+        inv[0][0] = mat[1][1];
+        inv[0][1] = -mat[0][1];
+        inv[1][0] = -mat[1][0];
+        inv[1][1] = mat[0][0];
+
+        det = mat[0][0] * inv[0][0] + mat[0][1] * inv[1][0];
+
+        printf("Determinant je: %lf\n", det);
+
+    }
     if(odkazU->riadky == 3 && odkazU->stlpce == 3){
 
         inv[0][0] = mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1];
@@ -803,7 +1030,7 @@ void DET(){
 
         det = mat[0][0] * inv[0][0] + mat[0][1] * inv[1][0] + mat[0][2] * inv[2][0];
 
-        printf("Determinant je: %f\n", det);
+        printf("Determinant je: %lf\n", det);
 
     }
     if(odkazU->riadky == 4 && odkazU->stlpce == 4){
@@ -906,6 +1133,7 @@ void DET(){
 
 
     }
+    }
 };
 
 void ANS() {
@@ -959,10 +1187,7 @@ int main(){
     system("clear");
 
     do{
-        printf("\n");
-        printf(
-                "ADD(A) DEL(D) ANS(S) EXIT(E)"
-              );
+        printf("ADD(A) DEL(D) ANS(S) EXIT(E):");
         scanf(" %c", &vyber);
 
         switch(vyber){
