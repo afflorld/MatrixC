@@ -632,10 +632,15 @@ void INV(){
     struct t_matica* odkazU = prva;
     static int cislo = 0;
     static int poradie = 0;
+    double presnost = 0;
     int zcislo = 0;
     int zakaz[1000]; 
 
     printf("Len pre matice 2x2, 3x3, 4x4, 5x5\n");
+    printf("Vyber si mieru presnosti");
+    scanf("%lf ", &presnost);
+
+    printf("\n");
 
     while(odkaz != NULL){
         if((odkaz->riadky == 2 && odkaz->stlpce == 2) || (odkaz->riadky == 3 && odkaz->stlpce == 3) || (odkaz->riadky == 4 && odkaz->stlpce == 4) || (odkaz->riadky == 5 && odkaz->stlpce == 5)){
@@ -710,7 +715,7 @@ void INV(){
                 for(int i = 0; i < riadky; i++){
                     for(int j = 0; j < stlpce; j++){
                         inv[i][j] /= det;
-                        inv[i][j] *= 100;
+                        inv[i][j] *= presnost;
                     }
                 }
 
@@ -754,7 +759,7 @@ void INV(){
                 for(int i = 0; i < riadky; i++){
                     for(int j = 0; j < stlpce; j++){
                         inv[i][j] /= det;
-                        inv[i][j] *= 100;
+                        inv[i][j] *= presnost;
                     }
                 }
 
@@ -844,7 +849,7 @@ void INV(){
                     for (int i = 0; i < riadky; i++) {
                         for (int j = 0; j < stlpce; j++) {
                             inv[i][j] /= det;
-                            inv[i][j] *= 100;
+                            inv[i][j] *= presnost;
                         }
                     }
 
@@ -919,7 +924,7 @@ void INV(){
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j < 5; j++) {
                             inv[i][j] /= det;
-                            inv[i][j] *= 100;
+                            inv[i][j] *= presnost;
                         }
                     }
 
@@ -1151,10 +1156,11 @@ void SAVE(){
     poradie = cislo;
     FILE *fp = fopen("./history.txt", "a");
 
-    fprintf(fp, "Historia ulozenia %d", poradie);
+    fprintf(fp, "Historia ulozenia %d\n", poradie);
 
     while (odkaz != NULL) {
         fprintf(fp, "Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
+        //doplnit loopu
         odkaz = odkaz->dalsia;
     }
 
