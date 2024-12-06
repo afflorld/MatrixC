@@ -537,7 +537,7 @@ void MULT_M(){
         odkaz = prva;
 
         while (odkaz != NULL) {
-            if((odkazU->stlpce == odkaz->riadky) || (!(odkazU->stlpce == odkaz->stlpce) && !(odkazU->riadky == odkaz->riadky))){ 
+            if(odkazU->stlpce == odkaz->riadky){ 
                 printf("Matica #%d (%d x %d)\n", odkaz->poradie, odkaz->riadky, odkaz->stlpce);
                 zakaz[odkaz->poradie] = odkaz->poradie;
                 zcislo++;
